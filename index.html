@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chipboard cut to size</title>
+    <link rel="icon" type="image/png" href="images/favicon.png" />
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <img class="logo" src="images/favicon.png" alt="Chipboard cut to size" />
+      <h1>Chipboard cut to size</h1>
+
+      <div class="textAreaInput">
+        <textarea id="textAreaInput" rows="2" placeholder="Enter project name"></textarea>
+      </div>
+
+      <div class="form-section">
+        <label>Length chipboard (мм): <input type="number" id="sheetWidth" value="2440" /></label>
+        <label>Width chipboard (мм): <input type="number" id="sheetHeight" value="1220" /></label>
+        <label>SAWBLADE THICKNESS (kerf, мм): <input type="number" id="kerf" value="4.4" /></label>
+        <label>Indent from the edge of the sheet (мм): <input type="number" id="margin" value="10" /></label>
+        <label
+          >Cost of one SHEET (€):
+          <input
+            type="number"
+            id="sheetCost"
+            value="0"
+            onfocus="if(this.value=='0') this.value=''"
+            onblur="if(this.value=='') this.value='0'"
+        /></label>
+        <label
+          >Cost per metre of edge (€):
+          <input
+            type="number"
+            id="edgeCost"
+            value="0"
+            onfocus="if(this.value=='0') this.value=''"
+            onblur="if(this.value=='') this.value='0'"
+        /></label>
+        <label
+          >Sheet Cutting per PC (€):
+          <input
+            type="number"
+            id="cutCost"
+            value="0"
+            onfocus="if(this.value=='0') this.value=''"
+            onblur="if(this.value=='') this.value='0'"
+        /></label>
+        <label
+          >Handling Charge per 1 sheet (€):
+          <input
+            type="number"
+            id="prepSheetCost"
+            value="0"
+            onfocus="if(this.value=='0') this.value=''"
+            onblur="if(this.value=='') this.value='0'"
+        /></label>
+        <label
+          >Setup charge Edgebander for 1 sheet (€):
+          <input
+            type="number"
+            id="prepEdgeCost"
+            value="0"
+            onfocus="if(this.value=='0') this.value=''"
+            onblur="if(this.value=='') this.value='0'"
+        /></label>
+        <label
+          >Other expenses (€):
+          <input
+            type="number"
+            id="extraCost"
+            value="0"
+            onfocus="if(this.value=='0') this.value=''"
+            onblur="if(this.value=='') this.value='0'"
+        /></label>
+        <label>Min workpiece length (мм): <input type="number" id="minWidth" value="160" /></label>
+        <label>Min workpiece width (мм): <input type="number" id="minHeight" value="65" /></label>
+      </div>
+
+      <h3>Parts:</h3>
+      <table id="partsTable">
+        <tr>
+          <th><div class="rotate-text">#</div></th>
+          <th><div class="rotate-text">Length</div></th>
+          <th><div class="rotate-text">Width</div></th>
+          <th><div class="rotate-text">Quantity</div></th>
+          <th>
+            <div class="rotate-text">
+              Rotation <span style="color: red; font-weight: bold; font-size: 18px">⬍</span>
+            </div>
+          </th>
+          <th><div class="rotate-text">EDGE Length 1</div></th>
+          <th><div class="rotate-text">EDGE Length 2</div></th>
+          <th><div class="rotate-text">EDGE Width 1</div></th>
+          <th><div class="rotate-text">EDGE Width 2</div></th>
+          <th><div class="rotate-text">Delete</div></th>
+        </tr>
+      </table>
+
+      <div style="text-align: center">
+        <button onclick="addRow()">Add Part</button>
+        <button onclick="calculateLayout()">Calculate</button>
+      </div>
+
+      <div id="canvasContainer"></div>
+      <div id="costSummary"></div>
+
+      <div style="text-align: center; margin-bottom: 40px">
+        <button id="exportPdfBtn" style="display: none" onclick="window.print()">📄 Export to PDF</button>
+      </div>
+    </div>
+    <script src="scripts.js"></script>
+  </body>
+</html>
